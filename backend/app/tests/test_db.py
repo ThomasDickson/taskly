@@ -10,10 +10,10 @@ from sqlalchemy.orm import sessionmaker
 SQLALCHEMY_TEST_DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/taskly_test"
 
 test_engine = create_engine(SQLALCHEMY_TEST_DATABASE_URL)
-SessionLocalTest = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
+TestSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
 def get_test_db():
-    db = SessionLocalTest()
+    db = TestSessionLocal()
     try:
         yield db
     finally:

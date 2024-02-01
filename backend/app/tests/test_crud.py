@@ -5,14 +5,11 @@ from db import get_db, Base
 
 client = TestClient(app)
 
-# TODO: Use pytest fixture to clean DB after each test
-
 # initialise test db
 Base.metadata.create_all(bind=test_engine)
 
 # override db dependency with test db
 app.dependency_overrides[get_db] = get_test_db
-
 
 def test_get_all():
     response = client.get('/api/tasks/')
@@ -20,9 +17,12 @@ def test_get_all():
     assert response.json() == []
 
 
-# def test_get_task():
-#     response = client.get('/api/tasks/9ba68b44-6d15-4add-a4ad-da9e81832233')
-#     assert response.status_code == 200
+def test_get_task():
+    response = client.post('/api/tasks', json={'description': 'Test Task'})
+    data = response.json()
+    
+    response = client.get(f'/api/tasks/{data["id"]}')
+    assert response.status_code == 200
 
 
 def test_get_task_invalid_uuid():
