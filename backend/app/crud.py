@@ -1,7 +1,7 @@
 # db
 from fastapi import APIRouter, Depends, Response, HTTPException, Query
 from sqlalchemy.orm import Session
-from database import get_db
+from db import get_db
 
 # models
 from models import Task

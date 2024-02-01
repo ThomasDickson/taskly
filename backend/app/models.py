@@ -1,7 +1,7 @@
 # db
 from sqlalchemy import Column, String, UUID, DateTime
 from sqlalchemy.orm import Session
-from database import Base
+from db import Base
 
 # types
 import uuid
