@@ -1,13 +1,13 @@
 # taskly. 🗒️
 7Day Code Challenge submission
 
-## Project Description 💻
+## 💻 Project Description
 
 A lightweight todo list application developed using ReactJS, Chakra UI, FastAPI and PostgreSQL. 
 
 Swagger API Documentation available at: <http://localhost:8000/docs>
 
-## Quick Start ▶️
+## ▶️ Quick Start
 
 Follow these steps to set up the project locally on your machine.
 
@@ -18,7 +18,7 @@ To run the application, [Docker](https://docs.docker.com/engine/install/) must b
 ### Installation
 
 ```
-  git clone https://github.com/ThomasDickson/taskly.git)https://github.com/ThomasDickson/taskly.git
+  git clone https://github.com/ThomasDickson/taskly.git
   cd taskly
 ```
 ### Running the Application
