@@ -30,3 +30,4 @@ Ensure that Docker is running, and then build the application:
   docker-compose up --build
 ```
 
+Open <http://localhost:3000> in your browser to view the project.
