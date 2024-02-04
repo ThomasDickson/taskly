@@ -1,16 +1,25 @@
 import React, { useEffect } from 'react'
 
 // components
-import { Button, DrawerBody, DrawerFooter, FormControl, FormErrorMessage, FormLabel, Input, Stack, Textarea } from '@chakra-ui/react'
-
+import { 
+    Button, ButtonGroup, DrawerBody, DrawerFooter, FormControl, 
+    FormErrorMessage, Input, Stack, Textarea 
+} from '@chakra-ui/react'
 
 // hooks
 import { useForm } from 'react-hook-form';
 
 
 const TaskForm = ({ task, onSubmit, onClose }) => {
-    const { handleSubmit, register, reset, formState: { errors } } = useForm();
+    // form state and submission using react-hook-form
+    const { 
+        handleSubmit, 
+        register, 
+        reset, 
+        formState: { errors } 
+    } = useForm();
 
+    // reset form values with task
     useEffect(() => {
         reset(task)
     }, [task])
@@ -45,10 +54,14 @@ const TaskForm = ({ task, onSubmit, onClose }) => {
                 </Stack>
             </DrawerBody>
             <DrawerFooter>
-                <Button variant='outline' mr={3} onClick={onClose}>
-                Cancel
-                </Button>
-                <Button colorScheme='purple' type='submit'>Save</Button>
+                <ButtonGroup>
+                    <Button colorScheme='purple' variant='outline' onClick={onClose}>
+                        Cancel
+                    </Button>
+                    <Button colorScheme='purple' type='submit'>
+                        Save
+                    </Button>
+                </ButtonGroup>
             </DrawerFooter>
         </form>
     )

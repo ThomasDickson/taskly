@@ -47,7 +47,7 @@ class TaskRepository:
         self.db.commit()
         
 
-    def update(self, task: Task, **data: dict) -> None:
+    def update(self, task: Task, **data: dict) -> Task:
         """Update a task in the database"""
         for key, value in data.items():
             setattr(task, key, value)

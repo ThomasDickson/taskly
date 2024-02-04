@@ -1,5 +1,9 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Input} from '@chakra-ui/react'
 import React from 'react'
+
+// components
+import { 
+    Drawer, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay
+} from '@chakra-ui/react'
 import TaskForm from './TaskForm'
 
 // hooks

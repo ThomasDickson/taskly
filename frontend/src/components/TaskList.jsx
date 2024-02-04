@@ -89,7 +89,7 @@ const TaskList = () => {
     return (
         <Flex 
             w='100%'
-            flexDir='column'
+            direction='column'
             p={3}
             gap={3}
         >
@@ -98,12 +98,14 @@ const TaskList = () => {
                     <Text as='b' fontSize='2xl'>My Tasks</Text>
                     <Text fontSize='sm' color='gray.400'>{formatDate(new Date())}</Text>
                 </Flex>
-                
-                <IconButton 
+                <Button colorScheme='purple' rightIcon={<AddIcon />} onClick={onCreateOpen}>
+                    New Task
+                </Button>
+                {/* <IconButton 
                     colorScheme='purple'
                     icon={<AddIcon />}
                     onClick={onCreateOpen}
-                />
+                /> */}
             </Flex>
             <HStack>
                 <InputGroup>

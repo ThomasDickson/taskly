@@ -1,8 +1,18 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Box, Button, Flex, HStack, Heading, Link, Switch, useColorMode } from '@chakra-ui/react'
 import React from 'react'
 
+// components
+import { 
+    Button, Flex, HStack, Heading, Link, Switch 
+} from '@chakra-ui/react'
+
+// icons
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+
+// hooks
+import { useColorMode } from '@chakra-ui/react'
+
 const Navbar = () => {
+    // toggle between light and dark mode
     const { colorMode, toggleColorMode } = useColorMode();
 
     return (

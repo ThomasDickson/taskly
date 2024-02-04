@@ -32,7 +32,7 @@ def db():
     Base.metadata.drop_all(bind=test_engine)
 
 
-# Fixture to provide the repository with the clean database session
+# fixture to provide the repository with a clean database session
 @pytest.fixture
 def task_repository(db: Session):
     return TaskRepository(db)
@@ -47,7 +47,7 @@ def test_create_task(task_repository: TaskRepository):
 
     # create task with mock data
     task = task_repository.create(**task_data)
-    
+
     assert task.id is not None
     assert task.description == task_data['description']
     assert task.due_date == task_data['due_date']
