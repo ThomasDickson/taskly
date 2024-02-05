@@ -1,14 +1,13 @@
-# db
 from fastapi import APIRouter, Depends, Response, HTTPException, Query
+
+# db
 from sqlalchemy.orm import Session
 from db import get_db
-
 
 # repositories
 from repositories import TaskRepository
 
-# models
-from models import Task
+# schemas
 from schemas import *
 
 # types

@@ -5,22 +5,23 @@ from db import Base
 
 # types
 import uuid
-from typing import List
 from datetime import date
 
 
 class Task(Base):
     __tablename__ = 'task'
 
-    id = Column(UUID, primary_key=True, default=uuid.uuid4, nullable=False)
+    id = Column(UUID, primary_key=True, default=uuid.uuid4, nullable=False)  # auto-generate new UUID4 for each new db entry
     description = Column(String, nullable=False)
     due_date = Column(Date)
     comments = Column(Text)
+
 
     def __init__(self, description: str, due_date: date, comments: str):
         self.description = description
         self.due_date = due_date
         self.comments = comments
+
 
     # def save(self, db: Session) -> None:
     #     db.add(self)

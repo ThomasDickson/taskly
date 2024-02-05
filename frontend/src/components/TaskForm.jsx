@@ -9,7 +9,6 @@ import {
 // hooks
 import { useForm } from 'react-hook-form';
 
-
 const TaskForm = ({ task, onSubmit, onClose }) => {
     // form state and submission using react-hook-form
     const { 
@@ -37,12 +36,15 @@ const TaskForm = ({ task, onSubmit, onClose }) => {
                         />
                         <FormErrorMessage>{errors.description && errors.description.message}</FormErrorMessage>
                     </FormControl>
-                    <FormControl>
+                    <FormControl isInvalid={errors.due_date}>
                         <Input 
                             type='date'
                             placeholder='Due Date'
-                            {...register('due_date')}
+                            {...register('due_date', {
+                                required: 'Date is required'
+                            })}
                         />
+                        <FormErrorMessage>{errors.due_date && errors.due_date.message}</FormErrorMessage>
                     </FormControl>
                     <FormControl>
                         <Textarea 

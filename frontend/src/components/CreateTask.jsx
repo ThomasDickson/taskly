@@ -7,37 +7,23 @@ import {
 import TaskForm from './TaskForm'
 
 // hooks
-import { useToast } from '@chakra-ui/react'
+import useAlert from '../hooks/useAlert'
 
 // api
 import axios from 'axios'
 
-const CreateTask = ({ isOpen, onClose, handleCreate }) => {
-    const toast = useToast();
+const CreateTask = ({ isOpen, onClose, onCreate }) => {
+    const alert = useAlert();
 
     const onSubmit = async (data) => {
         try {
             const response = await axios.post(`http://localhost:8000/api/tasks/`, data);
             // update tasks state with new task
-            handleCreate(response.data);
+            onCreate(response.data);
             
-            toast({
-                position: 'bottom-left',
-                title: 'Success!',
-                description: 'Task created successfully!',
-                status: 'success',
-                duration: 5000,
-                isClosable: true,
-            });
+            alert.success('Task created successfully!');
         } catch (error) {
-            toast({
-                position: 'bottom-left',
-                title: 'Error',
-                description: 'Error creating task',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-            });
+            alert.error('Error creating task.')
         } finally {
             // close drawer
             onClose();

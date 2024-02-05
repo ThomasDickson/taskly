@@ -32,7 +32,7 @@ class TaskRepository:
 
     def create(self, description: str, due_date: date, comments: str) -> Task:
         """Creates a new task in the database."""
-        task = Task(description=description, due_date=due_date, comments=comments)
+        task = Task(description, due_date, comments)
 
         self.db.add(task)
         self.db.commit()

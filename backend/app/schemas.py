@@ -5,7 +5,7 @@ from uuid import UUID
 
 
 class TaskBase(BaseModel):
-    """Base model for Task"""
+    """Base model for returning a Task"""
     id: UUID
     description: str
     due_date: Optional[date]
