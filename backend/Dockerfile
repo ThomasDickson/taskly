@@ -1,14 +1,15 @@
-FROM python:3.9
+FROM python:3.11
 
-WORKDIR /backend/app
-COPY . /app
+# copy pytest config
+COPY pyproject.toml pyproject.toml
 
 # install requirements
-COPY /backend/requirements.txt app/requirements.txt
-RUN pip install --no-cache-dir -r /backend/app/requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# run tests
-RUN pytest /backend/app/pytest
+# copy rest of app
+WORKDIR /app
+COPY /app .
 
 EXPOSE 8000
 
