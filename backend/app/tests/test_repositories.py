@@ -93,6 +93,7 @@ def test_get_all_tasks(task_repository: TaskRepository):
     # retrieve the tasks
     tasks = task_repository.get_all()
 
+    # ensure both tasks were retrieved
     assert len(tasks) == 2
     assert task_a in tasks
     assert task_b in tasks
@@ -116,11 +117,12 @@ def test_get_all_tasks_with_search(task_repository: TaskRepository):
     assert task_b.id is not None
 
     # retrieve the tasks
-    tasks = task_repository.get_all(search='A')
+    tasks = task_repository.get_all(search='b')
 
+    # ensure only task b was retrieved
     assert len(tasks) == 1
-    assert task_a in tasks
-    assert task_b not in tasks
+    assert task_b in tasks
+    assert task_a not in tasks
 
 
 def test_get_all_tasks_asc(task_repository: TaskRepository):
@@ -143,6 +145,7 @@ def test_get_all_tasks_asc(task_repository: TaskRepository):
     # retrieve the tasks
     tasks = task_repository.get_all()
 
+    # ensure correct order
     assert len(tasks) == 2
     assert tasks[0] == task_a
     assert tasks[1] == task_b
@@ -168,6 +171,7 @@ def test_get_all_tasks_desc(task_repository: TaskRepository):
     # retrieve the tasks
     tasks = task_repository.get_all(ascending=False)
 
+    # ensure correct order
     assert len(tasks) == 2
     assert tasks[0] == task_b
     assert tasks[1] == task_a
@@ -210,6 +214,7 @@ def test_update_task(task_repository: TaskRepository):
 
     updated_task = task_repository.update(task, **update_data)
 
+    # ensure updated task contains new data
     assert updated_task.id == task.id
     assert updated_task.description == update_data['description']
     assert updated_task.comments == update_data['comments']

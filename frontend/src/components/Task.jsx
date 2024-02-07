@@ -25,7 +25,8 @@ const Task = ({ task, onDelete, onUpdate }) => {
     // manage drawer state for editing task
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id, e) => {
+        e.stopPropagation();  // prevents clicking on overlapping row element
         try {
             await axios.delete(`http://localhost:8000/api/tasks/${id}`);
             // delete task from state
@@ -39,25 +40,17 @@ const Task = ({ task, onDelete, onUpdate }) => {
 
     return (
         <>
-            <Tr key={task.id}>
-                <Td>
-                    <Checkbox colorScheme='purple'/>
-                </Td>
+            <Tr key={task.id} onClick={onOpen}>
                 <Td>{task.description}</Td>
                 <Td>{formatDate(new Date(task.due_date))}</Td>
                 <Td>
-                    <HStack>
-                        <IconButton 
-                            onClick={() => handleDelete(task.id)}
-                            icon={<DeleteIcon />}
-                        />
-                        <IconButton 
-                            icon={<EditIcon />}
-                            onClick={onOpen}
-                        />
-                    </HStack>
+                    <IconButton 
+                        onClick={(e) => handleDelete(task.id, e)}
+                        icon={<DeleteIcon />}
+                    />
                 </Td>
             </Tr>
+            {/* Drawer for Editing a Task */}
             <EditTask 
                 task={task}
                 onUpdate={onUpdate}

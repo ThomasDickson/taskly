@@ -16,17 +16,17 @@ from typing import List
 router = APIRouter()
 
 
+# dependency to inject repository into each endpoint
 def get_repository(db: Session = Depends(get_db)):
     return TaskRepository(db)
 
 @router.get('/')
 def get_all_tasks(
-    search: Optional[str] = Query(None),
-    page: int = Query(1),
-    db: Session = Depends(get_db)
+    search: str = Query(''),
+    ascending: bool = Query(True),
+    repository: TaskRepository = Depends(get_repository)
 ) -> List[TaskBase]:
-    repository = TaskRepository(db)
-    return repository.get_all()
+    return repository.get_all(search=search, ascending=ascending)
 
 
 @router.get('/{task_id}')

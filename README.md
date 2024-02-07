@@ -70,12 +70,16 @@ I chose PostgreSQL as the database for Taskly due to its wide range of data type
 
 I utilised the repository pattern in my FastAPI application to follow SOLID principles and provide more modular and testable code. By abstracting database interactions into repository classes, they can be easily mocked during testing to provide more robust unit tests. 
 
-Another consideration that had to be made was whether to handle the search/sorting logic from the frontend or backend of the application. In the context of Taskly, I found frontend sorting and searching to be a more suitable approach as it provides a more responsive user experience. However, backend implementations can utilise indexing and other database techniques which are more efficient on larger datasets. 
+Another consideration that had to be made was whether to handle the search/sorting logic from the frontend or backend of the application. In the context of Taskly, I decided that a hybrid approach would be most suitable, with the frontend being responsible for searching to provide a responsive UI/UX, and the backend being responsible for sorting to utilise efficient database sorting techniques.
 
-**NOTE: I have written searching/sorting logic within the backend with comprehensive tests, but it is not utilised by the application.
+**NOTE: I have written searching logic within the backend with tests, but it is not utilised by the application.
 
 ## 💭 Reflection
 
-I decided to use Chakra UI due to its simplicity and aesthetically pleasing components. While initially satisfied with its capabilities, as the project progressed, I encountered limitations in the range of components provided by Chakra UI. Despite its strengths, components such as a date picker/Calendar were not readily available within the Chakra UI library.
+I decided to use Chakra UI due to its simplicity and aesthetically pleasing components. While initially satisfied with its capabilities, as the project progressed, I encountered limitations in the range of components provided by Chakra UI. Despite its strengths, components such as a date picker/Calendar were not readily available within the Chakra UI library and within the timeframe it was not feasible to style my own.
 
-Reflecting on this experience, I learned the importance of carefully evaluating the trade-offs when selecting a UI library or framework. While Chakra UI excels in simplicity and rapid prototyping, its component coverage may not always align with the requirements of more complex or specialized projects
+I learnt the importance of carefully evaluating the trade-offs when selecting a UI library or framework. While Chakra UI excels in simplicity and rapid prototyping, its components may not always cover all the requirements.
+
+
+
+

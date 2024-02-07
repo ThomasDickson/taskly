@@ -18,7 +18,7 @@ const Navbar = () => {
     return (
         <Flex
             p={3}
-            borderWidth='1px'
+            borderWidth='0 0 1px 0'
             justify='space-between'
             bg='whiteAlpha.50'
         >

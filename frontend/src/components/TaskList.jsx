@@ -11,7 +11,7 @@ import Task from './Task'
 
 // icons
 import { 
-    AddIcon, DeleteIcon, SearchIcon 
+    AddIcon, DeleteIcon, SearchIcon, TriangleDownIcon, TriangleUpIcon 
 } from '@chakra-ui/icons'
 
 // api
@@ -19,6 +19,7 @@ import axios from 'axios'
 
 // hooks
 import useAlert from '../hooks/useAlert'
+import useSearch from '../hooks/useSearch'
 
 // utils
 import { formatDate } from '../utils/date'
@@ -27,9 +28,16 @@ const TaskList = () => {
     const alert = useAlert();
 
     const [tasks, setTasks] = useState([]);
+    
+    // searching and sort state
+    const [searchTerm, setSearchTerm] = useState('');
+    const [ascending, setAscending] = useState(true);
 
     // manage drawer state for new tasks
     const { isOpen, onOpen, onClose } = useDisclosure()
+    
+    // apply search term to sorted tasks
+    const { filteredData } = useSearch(searchTerm, tasks)
 
     // delete the selected task from tasks state
     const onDelete = (id) => {
@@ -50,7 +58,13 @@ const TaskList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/tasks/`);
+                // fetch tasks with sorting parameter
+                const response = await axios.get(`http://localhost:8000/api/tasks/`, {
+                    params: {
+                        'ascending': ascending
+                    }
+                });
+
                 setTasks(response.data);
             } catch (error) {
                 alert.error('Error fetching tasks.');
@@ -58,7 +72,7 @@ const TaskList = () => {
         };
 
         fetchData();
-    }, []);
+    }, [ascending]);
 
     return (
         <Flex 
@@ -81,14 +95,12 @@ const TaskList = () => {
                     <InputLeftElement>
                         <SearchIcon color='gray.300' />
                     </InputLeftElement>
-                    <Input type='search' placeholder='Looking for something specific?'/>
+                    <Input 
+                        type='search' 
+                        placeholder='Looking for something specific?' 
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 </InputGroup>
-                <Button colorScheme='purple'>  
-                    Search
-                </Button>
-                <IconButton colorScheme='purple' variant='outline' isDisabled>
-                    <DeleteIcon/>
-                </IconButton>
             </HStack>
             <TableContainer
                 borderWidth='1px'
@@ -100,14 +112,15 @@ const TaskList = () => {
                 >
                     <Thead>
                         <Tr>
-                            <Th w='0'></Th>
                             <Th>Description</Th>
-                            <Th>Due Date</Th>
+                            <Th onClick={() => setAscending(!ascending)} cursor="pointer">
+                                Due Date {ascending ? <TriangleUpIcon /> : <TriangleDownIcon />}
+                            </Th>
                             <Th w='0'>Actions</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {tasks.map((task) => (
+                        {filteredData.map((task) => (
                             <Task 
                                 task={task}
                                 onDelete={onDelete}
@@ -117,6 +130,7 @@ const TaskList = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
+            {/* Drawer for Creating a Task */}
             <CreateTask 
                 isOpen={isOpen}
                 onClose={onClose}

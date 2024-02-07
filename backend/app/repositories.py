@@ -1,6 +1,5 @@
 # db
 from sqlalchemy.orm import Session
-from db import get_db
 
 # types
 from datetime import date
@@ -29,8 +28,8 @@ class TaskRepository:
         """Get all tasks from the database with search and sort parameters"""
         tasks = self.db.query(Task)
         
-        # search query
-        tasks = tasks.filter(Task.description.contains(search))
+        # search query (case insensitive)
+        tasks = tasks.filter(Task.description.ilike(f'%{search}%'))
 
         # sorting
         order_by = Task.due_date

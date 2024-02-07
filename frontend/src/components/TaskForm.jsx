@@ -29,6 +29,7 @@ const TaskForm = ({ task, onSubmit, onClose }) => {
                 <Stack>
                     <FormControl isInvalid={errors.description}>
                         <Input
+                            data-testid="description"
                             placeholder='Description *'
                             {...register('description', {
                                 required: 'Description is required'
@@ -38,6 +39,7 @@ const TaskForm = ({ task, onSubmit, onClose }) => {
                     </FormControl>
                     <FormControl isInvalid={errors.due_date}>
                         <Input 
+                            data-testid="due-date"
                             type='date'
                             placeholder='Due Date'
                             {...register('due_date', {
@@ -48,6 +50,7 @@ const TaskForm = ({ task, onSubmit, onClose }) => {
                     </FormControl>
                     <FormControl>
                         <Textarea 
+                            data-testid="comments"
                             resize='vertical'
                             placeholder='Comments'
                             {...register('comments')}
