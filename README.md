@@ -25,7 +25,8 @@ Ensure that Docker is running, and then build the application:
 
 ```
   docker compose down
-  docker compose up --build
+  docker compose build
+  docker compose up
 ```
 
 Open <http://localhost:3000> in your browser to view the project.
@@ -41,6 +42,8 @@ To terminate all services:
 ```
 
 ## 🧪 Testing
+
+Using jest, React testing is automated during the Docker build process.
 
 One challenge I was not able to completely overcome within the project timeframe was integrating automated testing with pytest into the Docker build process. The following commands will launch the backend and any associated dependencies and output pytest results.
 
@@ -79,6 +82,8 @@ Another consideration that had to be made was whether to handle the search/sorti
 I decided to use Chakra UI due to its simplicity and aesthetically pleasing components. While initially satisfied with its capabilities, as the project progressed, I encountered limitations in the range of components provided by Chakra UI. Despite its strengths, components such as a date picker/Calendar were not readily available within the Chakra UI library and within the timeframe it was not feasible to style my own.
 
 I learnt the importance of carefully evaluating the trade-offs when selecting a UI library or framework. While Chakra UI excels in simplicity and rapid prototyping, its components may not always cover all the requirements.
+
+To further improve the application, I would like to implement the ability to check tasks as being complete, 'tags' to group tasks together, and provide further test cases for the React application.
 
 
 
