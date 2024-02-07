@@ -40,10 +40,17 @@ const Task = ({ task, onDelete, onUpdate }) => {
 
     return (
         <>
-            <Tr key={task.id} onClick={onOpen}>
+            <Tr 
+                key={task.id} 
+                onClick={onOpen} 
+                cursor="pointer"
+                _hover={{
+                    bg: 'blackAlpha.200'
+                }}
+            >
                 <Td>{task.description}</Td>
                 <Td>{formatDate(new Date(task.due_date))}</Td>
-                <Td>
+                <Td justify="right">
                     <IconButton 
                         onClick={(e) => handleDelete(task.id, e)}
                         icon={<DeleteIcon />}
