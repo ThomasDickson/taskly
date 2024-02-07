@@ -25,9 +25,20 @@ class TaskRepository:
         return self.db.query(Task).get(id)
     
     
-    def get_all(self) -> List[Task]:
-        """Get all tasks from the database"""
-        return self.db.query(Task).all()
+    def get_all(self, search: str = '', ascending: bool = True) -> List[Task]:
+        """Get all tasks from the database with search and sort parameters"""
+        tasks = self.db.query(Task)
+        
+        # search query
+        tasks = tasks.filter(Task.description.contains(search))
+
+        # sorting
+        order_by = Task.due_date
+        if not ascending: 
+            order_by = Task.due_date.desc()
+
+        tasks = tasks.order_by(order_by).all()
+        return tasks
 
 
     def create(self, description: str, due_date: date, comments: str) -> Task:
