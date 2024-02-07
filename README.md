@@ -83,7 +83,7 @@ I decided to use Chakra UI due to its simplicity and aesthetically pleasing comp
 
 I learnt the importance of carefully evaluating the trade-offs when selecting a UI library or framework. While Chakra UI excels in simplicity and rapid prototyping, its components may not always cover all the requirements.
 
-To further improve the application, I would like to implement the ability to check tasks as being complete, 'tags' to group tasks together, and provide further test cases for the React application.
+To further improve the application, I would like to implement the ability to check tasks as being complete, 'tags' to group tasks together, and provide further test cases for the React application as well as more unit tests for the API.
 
 
 
